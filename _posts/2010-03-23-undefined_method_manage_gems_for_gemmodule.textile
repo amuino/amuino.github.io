@@ -1,0 +1,25 @@
+---
+layout: post
+title: undefined method `manage_gems' for Gem:Module
+date: '2010-03-23 13:30:00 +0100'
+mt_id: 22
+categories:
+- trucos_y_pistas
+---
+!>http://farm4.static.flickr.com/3087/3232467896_cb7431a299_m.jpg!:http://www.flickr.com/photos/ssck/3232467896/
+
+En las pelí­culas siempre hay un buen número de gente ansiosa y/o desesperada por quedarse con una herencia.
+
+Por algún motivo, eso no pasa en el mundo del software.
+
+Pero estoy divagando... ¿Estás intentando @rake rails:freeze:gems@ con una versión antigua de rails y obtienes @undefined method `manage_gems' for Gem:Module@ como respuesta?
+
+Respuesta corta: Edita @framework.rake@ y comenta la lí­nea @Gem.manage_gems@ ... "al parecer, ya no es necesaria":http://rubyforge.org/pipermail/rubygems-developers/2009-May/004637.html
+
+En mi caso, he heredado una aplicación rails 2.1.0 que quiero actualizar a 2.1.2, que es la versión 2.1.x soportada por "Hoptoad":http://hoptoadapp.com (obviamente, con 2.3.5 no va). La aplicación tiene un par de años y, en este tiempo, rubygems ha cambiado (¿dónde están mis 2 años de garantí­a?).
+
+Para localizar la lí­nea que hay que eliminar, es útil la opción @--trace@ de @rake@:
+
+bc. rake rails:freeze:gems VERSION=2.1.2 --trace
+
+Llamadme anticuado, pero cuando java dominaba el mundo estas cosas no pasaban... ;-)

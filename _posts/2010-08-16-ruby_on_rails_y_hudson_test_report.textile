@@ -1,0 +1,45 @@
+---
+layout: post
+title: 'Ruby on Rails y Hudson: Test Report'
+date: '2010-08-16 15:23:40 +0200'
+mt_id: 29
+categories:
+- trucos_y_pistas
+---
+Aunque "ejecutar los tests de un proyecto Rails en Hudson es muy sencillo":/2010/08/ruby-on-rails-y-hudson-lo-basico.html y no necesita nada especial, hacer que "Hudson":http://hudson-ci.org _entienda_ lo que "Rails":http://rubyonrails.org ("Test::Unit":http://ruby-doc.org/stdlib/libdoc/test/unit/rdoc/classes/Test/Unit.html, en realidad) está haciendo es otra cosa.
+
+Para poder ver un gráfico como el que tienen nuestros proyectos Java ("JUnit":http://junit.org, en realidad), hace falta un poco de _grasa_ para suavizar la relación.
+
+!/hudson/evolucion-tests.png!
+
+Para esto, existe el plugin de rails "ci_reporter":http://caldersphere.rubyforge.org/ci_reporter/, que traduce los resultados de @Test::Unit@ a algo que Hudson puede entender... el formato XML de "junit":http://www.junit.org/.
+
+Para una aplicación Rails _de toda la vida_ habrá que hacer tres cosas:
+
+* Instalar el plugin
+
+bc. gem install ci_reporter
+
+(Si no usas "rvm":http://rvm.beginrescueend.com/ entonces seguramente tengas que poner un @sudo@ delante).
+
+* Añadir 3 lí­neas a nuestro @Rakefile@ 
+
+bc. require 'rubygems'
+gem 'ci_reporter'
+require 'ci/reporter/rake/test_unit'
+
+* Ejecutar la tarea @ci:setup:testunit@ antes de las pruebas
+
+bc. rake ci:setup:testunit test
+
+Estos comandos son _por defecto_, para pruebas con @Test::Unit@. Si usamos otro framework, cambian. La "documentación original":http://caldersphere.rubyforge.org/ci_reporter/ lo explica bien.
+
+Por defecto, los informes de las pruebas se generan en @test/reports/@ dentro del proyecto. Sólo hay que indicarle a Hudson que los lea tocando la configuración del proyecto.
+
+!/hudson/junit-report-dir-rails.png!
+
+Y acordarse de cambiar el comando para que invoque a @ci_reporter@ en cada ejecución:
+
+!/hudson/ci_reporter_command.png!
+
+Listo, ejecuta un par de builds para poder ver el gráfico... ¡y a otra cosa!

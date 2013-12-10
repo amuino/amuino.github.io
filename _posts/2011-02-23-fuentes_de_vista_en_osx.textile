@@ -1,0 +1,23 @@
+---
+layout: post
+title: Fuentes de Vista en OSX
+date: '2011-02-23 16:33:41 +0100'
+mt_id: 45
+categories:
+- trucos_y_pistas
+---
+La parte mala de estar en OSX viene cuando el resto del mundo decide compartir documentos contigo que usan fuentes «raras». A decir verdad, esto puede ocurrir siempre que alguien tenga (y use) una de esas "fuentes raras":http://www.dafont.com/quid-pro-quo.font en sus documentos.
+
+<center><img width="500" height="203" src="http://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Calibri_sample.svg/500px-Calibri_sample.svg.png" /></center> 
+
+La fuente «rara» en cuestión es Calibri... una de las fuentes de Windows Vista y Office 2007. Hasta dónde sé, *Calibri es la nueva Arial* y es la fuente por defecto. Así­ que si trabajáis con gente que use windows, lo más probable es que sus documentos estén escritos en Calibri (o cualquier otra de las fuentes nuevas).
+
+Por suerte, estas fuentes se distribuyen en los productos de Microsoft para OSX. *Incluso* (y esto es lo bueno) *en los gratuitos*.
+
+Así­ que, lo fácil es descargarse el "Open XML Converter":http://www.microsoft.com/downloads/en/details.aspx?FamilyId=6B9238E1-CF69-48C4-BF2D-C4A8ACEEE520&displaylang=en (que, por otra parte sirve para convertir los docx en doc de toda la vida).
+
+Al abrir el DMG, no es necesario instalar nada... simplemente usad el botón derecho y la opción _Mostrar contenido del paquete_.
+
+En la carpeta _Contents/Packages_ tenéis el instalador para las fuentes: _OpenXML_all_fonts.pkg_.
+
+¡Doble click y ya! Las fuentes instaladas vivirán a partir de ahora en @/Library/Fonts/Microsoft@

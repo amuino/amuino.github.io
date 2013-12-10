@@ -1,0 +1,50 @@
+---
+layout: post
+title: Apache Buildr con Alex Boisvert
+date: '2011-01-26 09:42:00 +0100'
+mt_id: 41
+categories:
+- opinion
+---
+La "última sesión del San Francisco Java User Group":http://www.sfjava.org/calendar/14894440/, a la que pude acudir gracias a que "Nilistics":http://nilistics.net me plantó en USA para un poco de _face to face development_, trató sobre esta herramienta de build.
+
+<center><img src="http://photos4.meetupstatic.com/photos/event/e/e/c/600_21063820.jpeg" /></center>
+
+Alex es un tipo majo. Dejó claro de entrada que no tiene ningún puesto chulo en Buildr... sólo se encarga del papeleo (ocupa la _project management chair_). Aun así­, está entre «la gente importante». Además se esforzó por entender mis preguntas en balbuceante inglés :-)
+
+h2. La presentación
+
+Alex reutilizó "su presentación":http://www.slideshare.net/marakana/learn-to-build-like-you-code-with-apache-buildr (creo que de la java one) pero como yo no voy a muchos saraos, para mi era nueva.
+
+Buildr surge como una alternativa a Maven2 para builds que necesitan operaciones complejas o no standard. Los impulsores estaban contentos con Maven1 por su capacidad para incluir scripting (mediante el uso de "jelly":http://commons.apache.org/jelly/faq.html), algo que no es tan simple en Maven2.
+
+El _tag line_ de "Buildr":http://buildr.apache.org/ en la presentación es _«build like you code»_ y se adapta muy bien a lo que vimos. Buildr está construí­do sobre "rake":http://rake.rubyforge.org/ que utiliza "ruby":http://ruby-lang.org... lo que lo deberí­a hacer muy familiar para todos los que somos _promiscuos_ con los lenguajes de programación.
+
+Sobre esta estructura se crea un DSL especí­fico para proyectos java (si amigos, una herramienta en ruby para compilar java). El resultado es muy interesante... se puede utilizar @require@ para utilizar módulos especí­ficos (por ejemplo, para proyectos "scala":http://www.scala-lang.org/) y de forma automática se definen las "convenciones adecuadas":http://buildr.apache.org/languages.html#scala.
+
+bc. require 'buildr/scala'
+
+
+Como es habitual en ruby, el DSL no es más que código ruby... por lo que Buildr nos permite hacer trucos que no son sencillos con herramientas como "ant":http://ant.apache.org/ o "maven":http://maven.apache.org/, dónde tendremos que implementar una nueva "Task":http://ant.apache.org/manual/develop.html#writingowntask o "Plugin":http://maven.apache.org/plugin-developers/index.html... normalmente en un proyecto separado (y publicarlo en algún sitio para que esté disponible durante la build). Buildr lo mantiene todo junto, lo que es mucho más simple (pero no tan reusable).
+
+Uno de los puntos más fuertes que he visto en buildr es su habilidad para saber qué necesita hacerse. Es muy hábil comparando timestamps y saltándose pasos del _build_ cuando es posible. Cosas que _se supone_ que el resto de herramientas tambien hacen... pero en Buildr me ha parecido mucho más rápido.
+
+Sobre la velocidad... en la demo, buildr era fascinantemente rápido. No sé si el portátil era _la leche_ o realmente es así­ de veloz. Una de las cosas que podrí­a estar ayudando es que Buildr puede ejecutarse sobre el intérprete nativo de ruby y sólo crea una máquina virtual java cuando es necesaria usando el "ruby-java bridge":http://rjb.rubyforge.org/. La otra opción es usar "jruby":http://www.jruby.org/... en este caso estaremos «pagando» el coste de arranque de la @jvm@ en cada ejecución.
+
+Obvia decirlo, pero Buildr es capaz de consumir artefactos en repositorios maven sin problemas.
+
+<div style="width:425px;border: 1px solid #ccc" id="__ss_5800868"><strong style="display:block;margin:12px 0 4px"><a href="http://www.slideshare.net/marakana/learn-to-build-like-you-code-with-apache-buildr" title="Learn to Build like you Code with Apache Buildr">Learn to Build like you Code with Apache Buildr</a></strong><object id="__sse5800868" width="425" height="355"><param name="movie" value="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=antoinetolumeapachebuildrslides-101116160021-phpapp02&stripped_title=learn-to-build-like-you-code-with-apache-buildr&userName=marakana" /><param name="allowFullScreen" value="true"/><param name="allowScriptAccess" value="always"/><embed name="__sse5800868" src="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=antoinetolumeapachebuildrslides-101116160021-phpapp02&stripped_title=learn-to-build-like-you-code-with-apache-buildr&userName=marakana" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="355"></embed></object><div style="padding:5px 0 12px">View more <a href="http://www.slideshare.net/">presentations</a> from <a href="http://www.slideshare.net/marakana">Aleksandar Gargenta</a>.</div></div>
+
+
+h2. Mi visión de buildr
+
+Yo soy un usuario feliz de Maven. Comulgo con la mayor parte de sus ideas, su convención sobre configuración y su modelo de plugins... así­ que Buildr me aporta poco. No deja de ser otra herramienta «tipo make», basada en tareas con dependencias entre si... no muy diferente de Ant, excepto en que vuelve a usar un lenguaje de scripting en lugar de xml (lo que es una ventaja, francamente). 
+
+¡Aunque eso de poder ejecutar código de forma simple durante la build suena apetecible! No es que con maven "no se pueda":http://mojo.codehaus.org/rubyscript-maven-plugin/run-mojo.html, es que es _feo_, ya que hay que declarar un plugin, asociar su ejecución a una fase... Veremos si el "polyglot-maven":https://github.com/sonatype/polyglot-maven nos ayuda en el futuro.
+
+Por otra parte, Buildr proporciona mediante su DSL una extensibilidad muy similar a la que proporciona Maven con sus plugins.
+
+Como con casi todas las herramientas basadas en scripting, «un gran poder conlleva una gran responsabilidad». La flexibilidad de Buildr le permite consumir repositorios maven, pero publicar artefactos en ellos es harina de otro costal. A dí­a de hoy no está bien resuelto (entre otras cosas porque Buildr no maneja el concepto de _scopes_ de maven, así­ que es incapaz de generar la lista de dependencias automáticamente). Pero tampoco es muy complicado de conseguir (sólo es repetitivo... algo que hay que configurar en cada script).
+
+En resumen... *si maven no es para ti*, quizá buildr encaje mejor con tu forma de pensar. *Si eres usuario de ant*, estúdialo atentamente. O quizá buildr cambie tu forma de ver las builds... merece la pena echarle un vistazo.
+

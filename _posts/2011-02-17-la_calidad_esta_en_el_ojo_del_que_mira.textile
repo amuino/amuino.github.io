@@ -1,0 +1,26 @@
+---
+layout: post
+title: La calidad está en el ojo del que mira
+date: '2011-02-17 09:23:49 +0100'
+mt_id: 44
+categories:
+- opinion
+---
+Muchas veces se usa la frase de _la calidad no es negociable_ como argumento para hacer cualquier cosa que _los técnicos_ queramos hacer.
+
+Mi duda siempre ha sido... «¿pero qué es la calidad?». Hay muchas definiciones. En su momento, la famosa ISO9000 caracterizaba la calidad como poder repetir el mismo proceso para llegar al mismo producto dentro de una _holgura_ determinada (más o menos...). Es decir, podí­as hacer un producto totalmente decepcionante usando las peores formas de trabajo pero tener un sello de calidad en él. Porque siempre lo haces igual de mal.
+
+<a href="http://www.flickr.com/photos/pierrelaphoto/2314190563/" title="quality control 2 by Pierre LaScott, on Flickr"><img src="http://farm4.static.flickr.com/3241/2314190563_ec8514205d.jpg" width="442" height="500" alt="quality control 2" /></a>
+
+En realidad, *la calidad es subjetiva*. El consumidor tiene una visión y la ISO tiene otra. Obviamente, el equipo de desarrollo tendrá la suya y el cliente que les encarga el trabajo otra más.
+
+Me ha llamado la atención el último artí­culo de "Gojko Adzic":http://gojko.net/about/ sobre "Mapas de efectos":http://gojko.net/2011/02/16/effect-mapping-a-game-changing-technique-for-agile-product-management/. Y no por la idea de los mapas (que es interesante) si no porque le dedica una sección al tema de la subjetividad en la calidad.
+
+Es más, ataca esta subjetividad y sugiere que *la calidad se defina explí­citamente* en función de quién es el beneficiario del valor que se está generando. De esta forma todos los implicados están alineados en sus objetivos. Además la definición no se realiza (sólo) a bajo nivel (esa definición podrí­a ser el "Definition of Done":http://www.scrumalliance.org/articles/105-what-is-definition-of-done-dod de cada tarea) si no que intenta que la definición sea de alto nivel para que pueda guiar el proyecto.
+
+Lo curioso de definir así­ la calidad en un proyecto que incluye software es que *el beneficiario del trabajo entiende qué es la calidad*. No se basa en conceptos técnicos no relacionados con el negocio... no es opaca. Por otra parte, es muy posible que la definición de la calidad tal como la entienden muchos técnicos no sea importante a la hora de generar valor.
+
+Demasiadas veces he oí­do cómo se usa la calidad (técnica) para justificar el retraso en las fechas de entrega o en la aproximación para resolver un problema del usuario. Crear una definición de calidad compartida desde el primer momento puede ayudar a evitar esto.
+
+Y todo lo demás (pocos bugs, muchas pruebas, automatización del proceso de desarrollo) no es calidad. Es el sello de una buena ingenierí­a y lo que permite entregar la calidad que busca el cliente/consumidor/usuario.
+

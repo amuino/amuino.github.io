@@ -1,0 +1,22 @@
+---
+layout: post
+title: Chapuza o parálisis
+date: '2010-12-14 16:52:50 +0100'
+mt_id: 39
+categories:
+- opinion
+---
+Ese es mi dilema estos últimos dí­as.
+
+Hace ya un mes que he grabado un _screencast_ con un pequeño paso a paso del uso de "Devise":https://github.com/plataformatec/devise para solucionar el registro y autenticación de usuarios en "Rails 3":http://edgeguides.rubyonrails.org/3_0_release_notes.html. Pero no grabé el audio en ese momento para permitirme recortar la grabación (y evitar que sea un tostón de 30 minutos).
+
+*Problema:* no saco tiempo/ganas para grabar el audio.
+
+Lo que me deja en una disyuntiva... ¿publico una chapuza? ¿o lo dejo "madurando"? ¿o directamente lo vuelvo a grabar todo? ¿o me olvido de hacer _screencasts_ porque no valgo para eso?
+
+El problema, creo... es que *tengo demasiado tiempo libre*. No tengo presión, así­ que me entretengo buscando la perfección. Eso, creo, se llama "procrastinar":http://es.wikipedia.org/wiki/Procrastinaci%C3%B3n.
+
+Ya lo han dicho muchos antes que yo, pero no está mal recordarse que las *restricciones no son inconvenientes*, si no la motivación para hacer las cosas. Pensad en ello la próxima vez que os den un plazo de entrega imposible. 
+
+Quizá ayude (¡o no!)
+

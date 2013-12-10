@@ -1,0 +1,85 @@
+---
+layout: post
+title: Como usar MacPorts para instalar una versión anterior de ruby
+date: '2010-03-05 11:42:43 +0100'
+mt_id: 20
+categories:
+- trucos_y_pistas
+---
+Hace poco que he empezado a evolucionar una aplicación escrita hace más de un año usando ruby on rails.
+
+La aplicación funciona sin problemas en Ubuntu Karmic (en concreto, "esta imagen de amazon":http://thecloudmarket.com/image/ami-6743ae0e--ubuntu-9-10-karmic-server-i386-20100121) con la última versión de ruby disponible mediante @apt-get@.
+
+h2. El problema
+
+El problema es que en mi máquina local la cosa no iba tan bien. El motivo es una diferencia en el patchlevel de las versiones:
+
+bc. ruby ruby 1.8.7 (2009-06-12 patchlevel 174) [i486-linux]
+ruby ruby 1.8.7 (2010-01-10 patchlevel 249) [i686-darwin9]
+
+Yo uso MacPorts:http://www.macports.org/ para instalar ruby en mi mac y, aunque hay varias versiones de ruby disponibles, sólo está patchlevel más reciente.
+
+h2. La solución
+
+Como siempre, google trae la respuesta. "Joe Homs":http://journal.bitshaker.com/articles/2007/10/20/install-old-versions-of-ports-using-macports/ cuenta como crear una fuente local para MacPorts que contenga la versión anterior que queramos.
+
+No es complicado:
+
+* Crea una carpeta para la fuente local.
+
+bc. mkdir /opt/macports-local-repo
+
+* Localiza "en el svn de MacPorts":http://trac.macports.org/log/trunk/dports/lang/ruby/Portfile la revisión correspondiente a la versión de ruby que necesitas. En mi caso, era "@62943":http://trac.macports.org/browser/trunk/dports/lang/ruby/Portfile?rev=62943
+
+* Descarga la revisón a tu repositorio
+
+bc. cd /opt/macports-local-repo/
+svn co http://svn.macports.org/repository/macports/trunk\
+/dports/lang/ruby@62943 lang/ruby
+
+* Informa a MacPorts de que hay una nueva fuente. Para eso, modifica @/opt/local/etc/macports/sources.conf@ y añade una lí­nea con el protocolo @file://@. En mi caso:
+
+bc. file:///opt/macports-local-repo/
+rsync://rsync.macports.org/release/ports/ [default]
+
+* Actualiza el í­ndice de MacPorts
+
+bc. sudo portindex /opt/macports-local-repo/
+
+* Comprueba que todo ha ido bien
+
+bc.. port search --exact ruby
+ruby @1.8.7-p174 (lang, ruby)
+    Powerful and clean object-oriented scripting language
+
+ruby @1.8.7-p249 (lang, ruby)
+    Powerful and clean object-oriented scripting language
+
+Found 2 ports.
+
+p. 
+
+* ¡Y a instalar!
+
+bc. sudo port install ruby @1.8.7-p174
+
+h2. Bonus
+
+MacPorts permite activar y desactivar versiones, así­ que no hay problema en tener unas cuantas versiones instaladas, dependiendo del proyecto:
+
+bc. sudo port installed ruby
+The following ports are currently installed:
+  ruby @1.8.7-p72_2+thread_hooks
+  ruby @1.8.7-p174_2+darwin+thread_hooks (active)
+  ruby @1.8.7-p249_0+darwin+thread_hooks
+
+Y para cambiar de una versión a otra...
+
+bc. sudo port activate ruby @1.8.7-p249*
+--->  Deactivating ruby @1.8.7-p174_2+darwin+thread_hooks
+--->  Activating ruby @1.8.7-p249*
+AbelBook:~ amuino$ sudo port installed ruby
+The following ports are currently installed:
+  ruby @1.8.7-p72_2+thread_hooks
+  ruby @1.8.7-p174_2+darwin+thread_hooks
+  ruby @1.8.7-p249_0+darwin+thread_hooks (active)

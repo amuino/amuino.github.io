@@ -1,0 +1,21 @@
+---
+layout: post
+title: ¿Pueden los negocios tradicionales competir online?
+date: '2011-02-28 09:32:38 +0100'
+mt_id: 46
+categories:
+- opinion
+---
+Hace ya algunos meses que estoy ayudando a mi familia con "su tienda":http://lasbellotas.es. Como buen informático, hago de chico para todo... lo mismo instalo un wordpress que hago spam en twitter.
+
+<center><a href="http://www.flickr.com/photos/amuino/5326759852/" title="Las Bellotas by a_muinho, on Flickr"><img src="http://farm6.static.flickr.com/5168/5326759852_93dccd6abd.jpg" width="500" height="375" alt="Las Bellotas" /></a></center>
+
+Pero lo que me ha dado mucho qué pensar es... ¿Por qué soy yo el que gestiona los productos en "la tienda online":http://www.mumumio.com/tienda/las-bellotas? ¿Por qué no la gestionan los dueños de la tienda?
+
+En realidad creo que tengo una respuesta. *Las herramientas de e-commerce no están a la altura de los negocios tradicionales*. Funcionan muy bien para _tiendas 2.0_ dónde toda la gestión es digital e, incluso, es posible que no exista una tienda fí­sica. Pero para las tiendas que trabajan _cara al público_, internet les queda muy lejos.
+
+Podemos decir que «hay que ponerse al dí­a», «renovarse o morir» o muchas otras frases que no ayudan en nada a estos negocios. A esas tiendas tiendas en las que confí­as para tus compras del dí­a a dí­a. Lo que necesitan es un camino que les permita iniciar la transición a un modelo hí­brido, vendiendo en la tienda fí­sica y añadiendo valor extra en su tienda online.
+
+Entonces... ¿qué pasará con estas tiendas? ¿Están condenadas a desaparecer frente a "los nuevos comercios virtuales":http://conservaseleccion.com/? ¿Debemos renovar todos nuestro parque de pequeños comercios? ¿Deben los comercios invertir un dinero que no tienen en externalizar --a una empresa o a un pariente que sepa _de eso de interné_-- su presencia online? ¿Existe alguna solución especialmente diseñada para estos negocios?
+
+Lamentablemente, ahora mismo sólo tengo preguntas. Si tenéis alguna respuesta... aquí­ tenéis los comentarios.

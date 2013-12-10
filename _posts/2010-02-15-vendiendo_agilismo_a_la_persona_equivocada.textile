@@ -1,0 +1,41 @@
+---
+layout: post
+title: Vendiendo agilismo a la persona equivocada
+date: '2010-02-15 17:47:11 +0100'
+mt_id: 18
+categories:
+- opinion
+---
+Hace algún tiempo que tengo esa idea en la cabeza... la primera vez que la comenté con alguien fue tomando un café con Leo Antoli y poco después, "en una conversación":http://groups.google.com/group/agile-spain/browse_thread/thread/375cc34bc26829bc/e6c6a2ca1bcd2d47?lnk=gst&q=agilismo+corporativo#e6c6a2ca1bcd2d47 en la lista de ["Agile Spain":http://www.agile-spain.com/].
+
+La mayor parte del material sobre agilismo hace referencia a mejorar el equipo de desarrollo. Mejorar sus _skills técnicos_. Mejorar su comunicación con el cliente. Mejorar la calidad del producto. Mejorar la calidad del proceso.
+
+<center>!http://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Adolph-von-Menzel-Tafelrunde.jpg/250px-Adolph-von-Menzel-Tafelrunde.jpg!</center>
+
+Aunque todo eso está muy bien, hay algo que chirria... ¿cómo podemos mejorar los procesos y  la comunicación con el cliente sin el cliente? 
+
+bq. "Todo para el pueblo pero sin el pueblo":http://es.wikipedia.org/wiki/Despotismo_ilustrado
+
+Hay una cierta prepotencia subyacente en que el Agilismo se esté vendiendo a los roles técnicos. _Nosotros sabemos mejor que nadie como funciona esto_.
+
+El _agilismo de guerrilla_, el _volar bajo el radar_ son _cool_. Hace que los técnicos puedan reconfortar sus egos al sentirse mejores que esos estúpidos jefes de proyecto que ponen fechas imposibles.
+
+Pero, en realidad... *¿quien tiene la sartén por el mango?*
+
+Si no han cambiado mucho las cosas: *el que paga*... es decir, *el cliente*.
+
+Los técnicos pueden ser _super cool_, adoptar todas las _buzzwords_ e implantar las tecnologí­as y herramientas más _cutting edge_ del sector. Pueden esforzarse mucho. Pueden hacer demos y montar un entorno de CI (¡y yo les animo a todo ello!).
+
+Pero si el cliente no juega a lo mismo, si no está realmente implicado en el porqué de esas demos (detectar defectos e introducir los cambios cuanto antes)... entonces un dí­a, poco antes de la fecha de entrega, llegará la orden de _"hay que cambiarlo todo"_.
+
+Y el equipo técnico perderá la sonrisa.
+
+*¿Y si fuese al revés?* ¿Y si el cliente fuese el que exigiese una forma de trabajo ágil?
+
+Pasarí­an dos cosas beneficiosas:
+
+* Los parásitos del sector desaparecerí­an. Los malos profesionales no podrí­an sostener el ritmo. Es mucho más difí­cil entregar un producto funcionando cada 1 o 2 semanas que entregar papelotes para que parezca que sabemos lo que hacemos.
+
+* El cliente se convertirí­a, automáticamente, en un aliado. No habrí­a que buscar un _Product Owner_ (lo que parece ser la mayor queja en la comunidad ágil española).
+
+Entonces... ¿porqué seguimos vendiendo agilismo a _los chicos de la cueva_?

@@ -1,0 +1,48 @@
+---
+layout: post
+title: Ruby on Rails no es lento, es que eres cortito
+date: '2010-10-13 10:17:00 +0200'
+mt_id: 37
+categories:
+- trucos_y_pistas
+---
+Uno de mis mayores problemas con "Ruby on Rails":http://rubyonrails.org/ es que "un gran poder conlleva una gran responsabilidad":http://www.youtube.com/watch?v=IaN7CHT7WpE.
+
+En otras palabras, es muy fácil cagarla pensando que estás haciendo las cosas bien, usando DSLs elegantes o fantásticos _one-liners_ dónde otros lenguajes usarí­an un par de decenas de lí­neas.
+
+Pero eso era antes, cuando trabajaba en un consultoras dónde lo raro es encontrar gente con interés por su trabajo (y ganas de ser mejor en él). Ahora que soy autónomo, he desarrollado un _cariño especial_ hacia él. Eso si, _amigos que os conformáis con el programador medio_: sigo sin recomendaros hacer proyectos con RoR :-).
+
+<center><a href=""><img src="http://rlv.zcache.com/failure_is_always_an_option_button-p145112142744736755t5sj_400.jpg"></a></center>
+
+Centrémonos.
+
+Hoy voy a hablar de cómo cagarla en _performance_: *¡toca un ejemplo!*
+
+Vamos a averiguar si un usuario tiene alguna factura pagada. A nivel de base de datos es una relación 1-N entre dos tablas (`users` y `bills`) dónde `bills` tiene una columna indicando la fecha de pago... si es no-nula entonces está pagada.
+
+Cuatro opciones, usando Rails3:
+
+* User.find(2).bills.paid.any?
+* User.find(2).bills.paid.exists?
+* Bills.paid.where(:user_id => 2).any?
+* Bills.paid.where(:user_id => 2).exists?
+
+bc.. rails benchmarker 1000 \
+> 'User.find(2).bills.paid.any?' \
+> 'User.find(2).bills.paid.exists?' \
+> 'Bills.paid.where(:user_id => 2).any?' \
+> 'Bills.paid.where(:user_id => 2).exists?'
+            user     system      total        real
+#1      2.360000   0.090000   2.450000 (  2.682265)
+#2      2.250000   0.090000   2.340000 (  2.536643)
+#3      1.240000   0.040000   1.280000 (  1.407173)
+#4      0.970000   0.040000   1.010000 (  1.104962)
+
+
+p. Las dos primeras sentencias son las más lentas porque Rails ejecuta una consulta para encontrar al usuario antes de buscar las facturas (aunque, en teorí­a, tiene información suficiente para no hacerlo).
+
+La diferencia entre el uso de `any?` y `exists?` es que el primero ejecuta un `count(*)`, obligando a la base de datos a trabajar sobre todas las facturas pagadas, mientras que `exists?` simplemente intenta recuperar el `id` de una factura pagada (la primera que la BD tenga a mano), limitando la cantidad de datos que se mueven entre la BD.
+
+La diferencia entre el caso más rápido y el más lento es de, aproximadamente, *x2.5* veces (con mis _muy escasas_ filas en BD).
+
+Si este patrón se repite en toda la aplicación, podemos estar hablando de casi triplicar el coste en servidores... para una aplicación «tipo intranet» puede ser tolerable, pero si tu aplicación está en internet con miles/millones de usuarios, tus costes se disparan sólo porque el programador eligió mal el _one-liner_.

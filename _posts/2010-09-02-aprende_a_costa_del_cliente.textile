@@ -1,0 +1,37 @@
+---
+layout: post
+title: Aprende a costa del cliente
+date: '2010-09-02 21:24:03 +0200'
+mt_id: 34
+categories:
+- opinion
+---
+Hace algún tiempo salió el tema sobre lo _polí­ticamente incorrecto_ que era aprender a costa del cliente para el que se trabaja. Es decir, que mientras te pagan por hacer una aplicación web, uno aprenda a usar "struts":http://struts.apache.org/.
+
+Solí­a estar de acuerdo con esto...
+
+<a href="http://www.flickr.com/photos/latitudes/111908193/" title="School Bus Top by Todd Klassy, on Flickr"><img src="http://farm1.static.flickr.com/55/111908193_57ed7bc993.jpg" width="500" height="357" alt="School Bus Top" /></a>
+
+Pero ya no. O no sin matices, al menos...
+
+Cuando alguien nos contrata (y, por si alguien llega despistado, hablamos de informáticos, mejor si tienen formación especí­fica) no lo hace porque seamos robots intercambiables, capaces de trabajar sin pensar. 
+
+Nosotros *aprendemos cada dí­a*. Si tras un mes trabajando no has aprendido nada, intenta aprender a automatizar tu trabajo... si es así­ de simple, no es necesario un humano para hacerlo. Y quizá hasta puedas vender el resultado.
+
+¿Suena a utopí­a? Bueno, hay muchas cosa a nuestro alrededor creadas para eliminar la repetición de tareas tediosas... "maven":http://maven.apache.org, "hudson":http://hudson-ci.org, "capistrano":http://www.capify.org/, filtros antispam, "1password":http://agilewebsolutions.com/products/1Password, los pagos por domiciliación bancaria, @Ctrl-C / Ctrl-V@, la imprenta... seguro que puedes ver alguno más.
+
+Los trabajos que realmente importan, los trabajos por los que debemos ser contratados son aquellos que nos permiten aprender _durante_ el trabajo. No tiene porque ser algo revolucionario...
+
+El matiz (que _habelos, hailos_) es que el aprendizaje _revolucionario_ no podemos conseguirlo _sólo_ durante el trabajo con el cliente. Si no sabes "django":http://django.es, primero juega un poco con él en casa y luego lánzate a algún proyecto. Una cosa es _aprender_ y otra _sacrificar un proyecto_ (y puede que tu futuro profesional).
+
+Otro matiz importante... es que hablo desde la perspectiva de un autónomo y trato directamente con mi cliente... Si estás dentro de una empresa puede que tengas oportunidad de elegir o, más probablemente, que sea otro el que decide en qué empleas tu tiempo.
+
+Finalmente... *¿porqué no aprender _solo_ en casa?* ¿o en _coding dojos_ y _code retreats_ como los que organiza "agilismo.es":http://agilismo.es/? Así­ no pondremos en riesgo el proyecto...
+
+Pues, en mi opinión, por múltiples motivos. Además de que podrí­amos ser "reemplazados por autómatas":http://www.techworld.com.au/article/268644/agency_sees_robots_replacing_humans_service_jobs_by_2025, se me ocurren estos dos:
+
+*1.* Seguro que dedicas más tiempo a trabajar (y aprender) durante la jornada laboral. No mucha gente se pasará otras 8 horas aprendiendo sin cobrar.
+
+*2.* Los problemas de juguete no sirven para aprender de verdad. Son una buena iniciación y quizá una buena forma de pulir detalles. Pero sólo se aprende de verdad cuando estás bajo presión, cuando hay que reducir el alcance para llegar a la fecha, cuando unos cientos de usuarios hunden tu servidor... ahí­ es dónde un puede lucirse... y dónde demuestra si lo que cobra lo vale o no.
+
+_P.D: a mis clientes... espero que yo sí­ valga lo que cobro :-)_

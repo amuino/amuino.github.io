@@ -1,0 +1,90 @@
+---
+layout: post
+title: Mitigando memory leaks en acts_as_solr
+date: '2010-02-05 12:30:00 +0100'
+mt_id: 17
+categories:
+- trucos_y_pistas
+---
+!>http://lucene.apache.org/solr/images/solr.jpg (Solr logo)!  "Sigo encontrando problemas":/2010/02/ruby-se-muere.html al procesar volúmenes de información _importantes_ con "ruby":http://www.ruby-lang.org/ y su ecosistema. Estamos hablando de algo más de dos millones y medio de registros... no es para tanto ¿no?
+
+En este caso el sí­ntoma es la muerte de ruby por falta de memoria durante la reconstrucción del í­ndice de "solr":http://lucene.apache.org/solr/ (un servidor para búsquedas de texto) con "acts_as_solr":http://acts-as-solr.rubyforge.org/ (un plugin de rails para utilizar solr con active record).
+
+bc. AbelBook:triptance amuino$ rake solr:reindex
+(in /Users/amuino/dev/triptance/svn/trunk/triptance)
+Clearing index for City...
+Rebuilding index for City...
+ruby(7890,0xa0398720) malloc: *** mmap(size=2097152) failed (error code=12)
+*** error: can't allocate region
+*** set a breakpoint in malloc_error_break to debug
+ruby(7890,0xa0398720) malloc: *** mmap(size=2097152) failed (error code=12)
+*** error: can't allocate region
+*** set a breakpoint in malloc_error_break to debug
+ruby(7890,0xa0398720) malloc: *** mmap(size=1052672) failed (error code=12)
+*** error: can't allocate region
+*** set a breakpoint in malloc_error_break to debug
+ruby(7890,0xa0398720) malloc: *** mmap(size=1052672) failed (error code=12)
+*** error: can't allocate region
+*** set a breakpoint in malloc_error_break to debug
+rake aborted!
+failed to allocate memory
+
+Un poco de google "me descubre que no soy el primero":http://groups.google.com/group/acts_as_solr/browse_thread/thread/21140bc32f7a6b7/89e89bf9b6c1187f?lnk=gst&q=memory+leak#89e89bf9b6c1187f, aunque sí­ que soy muy raro...
+
+Como tengo bastante más soltura con java que con ruby, vuelvo a ejecutar la tarea con @jruby@ y a analizar el consumo de memoria con @jconsole@. Un beneficio añadido es que la JVM me permite limitar la memoria y puedo reproducir los errores mucho más rápido (ruby sólo falla cuando el operativo no puede asignar más memoria... después de asignar los 64Gb de memoria virtual).
+
+Tras mucho ensayo y error, parece que el consumo de memoria está estabilizado...
+
+Estos son los cambios:
+
+* Leer los modelos como @:readonly@
+* Evitar crear un nuevo array con la versión _solrizada_ de los modelos
+* Organizar el código para que todo siga funcionando
+
+Es decir:
+
+*acts_as_solr/lib/class_methods* Lí­nea 204 y siguientes...
+
+bc..    def rebuild_solr_index(batch_size=0, &finder)
+      finder ||= lambda { |ar, options| ar.find(:all, options.merge({:order => self.primary_key})) }
+      start_time = Time.now
+
+      if batch_size > 0
+        items_processed = 0
+        limit = batch_size
+        offset = 0
+        begin
+          iteration_start = Time.now
+          items = finder.call(self, {:limit => limit, :offset => offset, :readonly => true})
+          items_processed += items.size
+          last_id = items.last.id if items.last
+          offset += items.size
+
+          items.collect! { |content| content.to_solr_doc }
+          if items.size > 0
+            solr_add items
+            solr_commit
+          end
+    
+          time_so_far = Time.now - start_time
+          iteration_time = Time.now - iteration_start         
+          logger.info "#{Process.pid}: #{items_processed} items for #{self.name} have been batch added to index in #{'%.3f' % time_so_far}s at #{'%.3f' % (items_processed / time_so_far)} items/sec (#{'%.3f' % (items.size / iteration_time)} items/sec for the last batch). Last id: #{last_id}"
+        end while items.nil? || items.size > 0
+      else
+        items = finder.call(self, {})
+        items.each { |content| content.solr_save }
+        items_processed = items.size
+      end
+      solr_optimize
+      logger.info items_processed > 0 ? "Index for #{self.name} has been rebuilt" : "Nothing to index for #{self.name}"
+    end
+
+p. De nuevo, espero que esto le ahorre a alguien un poco de tiempo
+
+Esta es la lí­nea de comandos final... 
+
+bc. jruby --server -J-Xmx1024m -w -S rake solr:reindex CLEAR=true BATCH=500
+
+Y este, el consumo de memoria...
+
+!(mt-image-center)http://blog.abelmuino.com/acts-as-solr-reindex-fix-leaks.png  (Consumo de memoria después de modificar acts_as_solr) !

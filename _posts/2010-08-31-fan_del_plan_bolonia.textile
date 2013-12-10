@@ -1,0 +1,36 @@
+---
+layout: post
+title: Fan del Plan Bolonia
+date: '2010-08-31 09:31:04 +0200'
+mt_id: 33
+categories:
+- opinion
+---
+Hace unos dí­as que participo en una conversación en el "grupo de ingenieros e ingenieros técnicos en informática":http://www.linkedin.com/groups?home=&gid=1075757 de "linked in":http://linkedin.com.
+
+!> http://media01.linkedin.com/media/p/3/000/01b/017/0b8f9c6.png!
+
+La conversación empezó preguntándose si la titulación garantiza la calidad del trabajador (ambigí¼o, si...). El tema derivó en ideas locas (porque ninguno vamos a mover un dedo por ellas... eso cuesta mucho trabajo) para mejorar el sistema educativo/universitario.
+
+En un punto, se escapó de mis dedos esto, mientras defendí­a la necesidad de especializar la formación de forma agresiva...
+
+bq.. En cuanto a especialidades... algunas salen muy claras: hardware vs software. No es lo mismo el diseño de microprocesadores o robots que hacer aplicaciones web. 
+
+Otras más discutibles (quizá): Ingeniero de testing? Administrador de sistemas? Programador (que parece que es el único ingeniero informático del que nos acordamos)? 
+¿Una especialidad en gestión y metodologí­as? ¿Soft skills para elicitación de requisitos y negociación con clientes? 
+
+No es que haya que ser un hacha programando... es que hay que salir sabiendo hacer algo (y preparado para recuperarse de muchos golpes en el ego al encontrar gente mejor). Aunque estés preparado para mucho más. 
+
+No tienen porque ser titulaciones separadas. Pero habrí­a que permitir a quien le interese trazar ese camino. Y el sistema actual solo hace un amago en esa lí­nea con las asignaturas opcionales... no hay un recorrido real.
+
+p. La respuesta desde "dentro de la Universidad de La Rioja":http://www.linkedin.com/profile?viewProfile=&key=34793565&authToken=qpDb&authType=name&trk=anet_mfeed_profile fue:
+
+bq. Abel, acabas de definir la filosofí­a del denostado Plan Bolonia.
+
+_(No tengo claro si eso es positivo o no :-) )._
+
+Apenas tengo mucha información sobre el Plan Bolonia. En su momento leí­ algo, pero me pareció que todo el mundo discutí­a sobre planes/atribuciones/exclusividad/colegios... nunca leí­ mucho sobre cambios al sistema educativo, excepto que ciertas carreras estarán reguladas (y gente quejándose de que la Ingenierí­a Informática no lo estuviese y pidiendo atribuciones/exclusividad). 
+
+Pero divago...
+
+¿Es vedad que el Plan Bolonia se parece a mi _sueño humedo_ para el sistema educativo? Aunque sea sólo sobre el papel, que ya sabemos cómo se hacen las cosas luego...

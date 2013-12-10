@@ -1,0 +1,32 @@
+---
+layout: post
+title: Practicando el Juego de la Vida
+date: '2010-03-06 13:30:36 +0100'
+mt_id: 21
+categories:
+- personal
+- opinion
+---
+Hoy muchos afortunados estarán reunidos en el "Code Retreat de Segovia":http://agilismo.es/index.php?option=com_content&view=article&id=89:coderetreat-en-segovia&catid=35:evento practicando, compitiendo y _picándose_ con el de al lado para ver quien es el más rápido, más hábil...
+
+Por varios motivos no he podido estar... así­ que como premio de consolación os dejo mi versión del ["Conway's Game of Life":http://en.wikipedia.org/wiki/Conway's_Game_of_Life]
+
+<object width="560" height="340"><param name="movie" value="http://www.youtube.com/v/UMHRTHBYoMw&hl=es_ES&fs=1&rel=0&color1=0x3a3a3a&color2=0x999999&hd=1"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/UMHRTHBYoMw&hl=es_ES&fs=1&rel=0&color1=0x3a3a3a&color2=0x999999&hd=1" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="560" height="340"></embed></object>
+
+Pese a haberlo repetido muchas (pero muchas) veces, todaví­a hay varias meteduras de pata al teclear ... pero estoy bastante satisfecho. La primera prueba era de casi 15 minutos... y esta es la mitad (incluyendo un pequeño refactoring).
+
+Es la primera vez que utilizo una herramienta para BDD:http://behaviour-driven.org/ al realizar una implementación y me ha creado una sensación agridulce.
+
+* Es estimulante saber *exactamente* cuanto queda para terminar un proyecto
+* Los criterios de aceptación están a un nivel tan alto que hay ocasiones en las que *se pierde el ritmo*... y eso que este ejercicio es muy pequeño. A mi me ocurre al pasar del caso de prueba para _celdas que deben morir_ al _celdas que deben vivir_... hay un montón de código que escribir y ningún criterio de aceptación que sirva de guí­a.
+* Para mi gusto, *el código resultante es _malo_*. Quizá sea _sobreingenierí­a_, pero yo _veo_ al menos una clase _Cell_ (que no aparece al guiarse sólo por los criterios de aceptación). Posiblemente con necesidades más complejas la clase _Cell_ aparecerí­a.
+
+Y sí­, ya sé que no sólo de BDD vive el hombre... y que en un proyecto real habrí­a varios niveles de pruebas más. 
+
+Ahora me queda pendiente hacer la prueba en Java, con funciones de autocompletar en el propio IDE (con ruby funciona muy, muy mal...)
+
+Bueno... ¿y los demás qué? ¿qué tal habéis pasado el dí­a en Segovia?
+
+*Actualización*
+
+Como algunos han preguntado, las canciones que suenan son ["ãƒãƒƒãƒ”ã‚£ã‚±ãƒ³ã‚­ãƒ¥ã‚¦ã‚¸ãƒ§":http://bit.ly/aos9NM] y ["Night Out - Instrumental":http://bit.ly/9Jlm7I]

@@ -1,0 +1,62 @@
+---
+layout: post
+title: La plaga de las Startups
+date: '2011-02-08 09:11:31 +0100'
+mt_id: 43
+categories:
+- opinion
+---
+¿No habéis notado que cada vez hay más _startups_? Sí­, seguro que sí­. Seguro que estáis hartos de que hasta el hijo de la portera está montando su _startup_. Sí­... va a vender las madalenas de su madre por internet.
+
+<a href="http://www.flickr.com/photos/mr_t_in_dc/3396791200/" title="Cupcake Fail by Mr. T in DC, on Flickr"><img src="http://farm4.static.flickr.com/3421/3396791200_86242b50f6.jpg" width="500" height="333" alt="Cupcake Fail" /></a>
+
+Hoy me he levantado con ganas de ganarme enemigos. Así­ que, vamos a poner las cartas sobre la mesa.
+
+h2. No estás montando una startup
+
+Asúmelo. Tu idea no es una startup... 
+
+No, no, espera... vamos un paso más atrás
+
+h2. ¿qué diablos NO es una startup?
+
+Casi toda la gente que habla de _su startup_ está hablando de poner en marcha un _proyecto_ de internet. 
+
+*Mal*.
+
+Borra la palabra proyecto y empieza a pensar en _negocio_. Las palabras importan... «negocio» lleva asociados conceptos como ingresos, gastos, costes... que en «proyecto» quedan ocultos.
+
+Bien, entonces digamos que estás  montando un _negocio_ en internet. Eso es algo difí­cil y muy loable, no dejes que nadie te quite la idea de la cabeza.
+
+Pero todaví­a no es una _startup_. De la misma forma que la cafeterí­a de mi barrio no es un Starbucks, tu negocio puede no tener la escala suficiente. Insisto, puede ser un negocio perfectamente rentable... pero no tiene la capacidad de crecer órdenes de magnitud en muy poco tiempo. Es una *pyme*.
+
+Alguno estará pensando «¿Starbucks es una Startup?». No, por supuesto que no. Ya no, al menos. Es una empresa establecida, con dinámicas de negocio muy diferentes a una startup. Digamos que ser una startup es, también, un _estado mental_. O una _fase del negocio_. Igual que "un emprendedor es algo diferente a un empresario":http://angelmaria.com/2006/12/24/emprendores-vs-empresarios/ (o un creador es distinto a un gestor), una empresa establecida es algo diferente a una startup.
+
+Ok, ok... ya oigo a mis colegas técnicos desde detrás de sus pantallas... «nosotros somos pequeños e innovadores, estamos desarrollando un algoritmo revolucionaria que va a cambiar el estado del arte».
+
+Aquí­ puede que te hayas «pasado de frenada» (puede que no, piénsalo friamente). Si lo que tienes va a revolucionar el _status quo_ tanto como crees, es muy posible que ni siquiera tengas un mercado. Así­ que, aunque en teorí­a podrí­as multiplicar el valor de tu empresa, en la práctica seguramente sea difí­cil encontrar los clientes necesarios.
+
+En este caso, es probable que tu empresa funcione mejor con subvenciones de I+D+i, o como una rama dentro de otra empresa. Quizá *sí­* seas una startup, pero tu inversión en _marketting_ será tan grande, o mayor, que la tecnológica. Espero que lo hayas incluido en tus cálculos. Y cuidado con no estar cultivando un mercado para que lo coseche algún otro...
+
+h2. Entonces, una startup, ¿qué es?
+
+Me voy a lanzar con mi definición... ajustándola un poco a internet y a España.
+
+* *Es un negocio:* te lo tomas en serio, piensas no sólo en la parte técnica (la más fácil... a veces hasta irrelevante).
+* *No es un hobby:* Repito... *te lo tomas en serio*. Aunque quizá tengas que hacer otras cosas para poder pagar el desarrollo de la empresa (sobre todo si decides no buscar inversión), esas otras cosas son *un mal necesario*.
+* *Es «el siguiente paso lógico»:* Lo que plantea la startup debe ser comprensible (o mejor: _obvio_) una vez que te lo cuentan. No puede ser un salto demasiado grande que se anticipe a las necesidades reales, ni algo que repita lo que ya es mainstream.
+* *Puede fallar:* Una Startup está _empujando los lí­mites_ de los modelos de negocio y/o soluciones existentes. Quizá vaya en la dirección correcta, quizá no. Se mueve en un entorno incierto y todo puede pasar. Por eso *te lo tomas en serio*. Hay riesgo real de perder dinero y quedarte en el paro... no esperes que el estado te proteja.
+* *Es invertible:* independientemente de que aceptes o no inversión, las oportunidades reales de crecimiento deben ser jugosas. 
+
+En otros paises/entornos seguramente mi lista de caracterí­sticas serí­a distinta. Por ejemplo, la inversión en _revoluciones_ no es destacable en España. Y lo de «el siguiente paso lógico» seguramente no sea tan evidente para industrias como la ingenierí­a biomédica.
+
+h2. ¿Y tengo que ser una startup?
+
+*No, por supuesto que no*.
+
+La mayorí­a de los negocios que hay sobre el planeta no son startups. Generan ingresos y beneficios. Dan empleo estable a millones de personas. Hacen que el mundo siga en marcha.
+
+Si tienes la intención de montar una tienda online, ¡estupendo! (dicen que el ecommerce por fin despegará este año). Pero lo tienes muy difí­cil para convertirte en un "Amazon":http://amazon.com o un "Etsy":http://etsy.com.
+
+Si vas a montar una consultora en informática, te puede ir genial. Pero estarás siempre limitado por las personas cualificadas que puedas encontrar (aunque algunas consultoras sí­ que son capaces de conseguir inversión).
+

@@ -1,0 +1,97 @@
+---
+layout: post
+title: Autotest, feedback más rápido
+date: '2010-11-12 23:30:25 +0100'
+mt_id: 38
+categories:
+- trucos_y_pistas
+---
+ Todos sabemos (o deberí­amos saber) las ventajas de tener un servidor de "integración continua":http://blog.abelmuino.com/2010/08/ruby-on-rails-y-hudson-test-report.html. Entre ellas está la ejecución de los tests.
+
+Si hemos hecho las cosas bien, también podrí­amos lanzar las pruebas en nuestra máquina de desarrollo. Pero no serí­a la primera vez que nos falla la constancia y hacemos un commit sin probar ¿Verdad?
+
+<img alt="testing-please-do-not-disturb.jpg" src="http://blog.abelmuino.com/testing-please-do-not-disturb.jpg" width="525" height="360" class="mt-image-center" style="text-align: center; display: block; margin: 0 auto 20px;" />
+
+h2. Bienvenidos a Autotest
+
+Autotest es un proceso que monitoriza los ficheros del proyecto y (a ver si lo adivináis) ejecuta los tests de forma automática cada vez que realizamos un cambio.
+
+Para que el feedback sea más rápido, autotest usa heurí­sticas para saber qué test está relacionado con qué código y ejecutar sólo lo mí­nimo necesario.
+
+Otra cosa con la que @autotest@ gana tiempo es saltándose las tareas de preparación de la base de datos. Ojo, porque esto significa que después de una migración habrá que aplicarla en la BD de test también (@rake db:test:clone@).
+
+h2. Instalando autotest con las heurí­sticas para rails
+
+bc. gem install autotest autotest-rails-pure
+
+Fácil e indoloro. Ahora arrancamos autotest en la carpeta del proyecto rails. Lo primero que hará será ejecutar todos los tests. Con un poco de suerte, todos los tests pasan.
+
+bc.. amuino$ autotest
+loading autotest/rails
+style: Rails
+/Users/amuino/.rvm/rubies/ruby-1.8.7-p302/bin/ruby -I.:lib:test -rubygems -e "['test/unit', 'test/unit/helpers/users_helper_test.rb', 'test/unit/user_test.rb', 'test/functional/users_controller_test.rb'].each { |f| require f }" | /Users/amuino/.rvm/gems/ruby-1.8.7-p302@global/gems/autotest-4.4.2/bin/unit_diff -u
+Loaded suite -e
+Started
+........
+Finished in 0.138437 seconds.
+
+8 tests, 11 assertions, 0 failures, 0 errors
+
+
+p. Vamos a romper un test...
+
+bc.. /Users/amuino/.rvm/rubies/ruby-1.8.7-p302/bin/ruby -I.:lib:test -rubygems -e "['test/unit', 'test/unit/user_test.rb'].each { |f| require f }" | /Users/amuino/.rvm/gems/ruby-1.8.7-p302@global/gems/autotest-4.4.2/bin/unit_diff -u
+Loaded suite -e
+Started
+F
+Finished in 0.024852 seconds.
+
+1) Failure:
+test_the_truth(UserTest) [/test/unit/user_test.rb:6]:
+<false> is not true.
+
+1 tests, 1 assertions, 1 failures, 0 errors
+
+
+p. ¿Os habéis fijado que sólo sale una F (y ningún punto)? Al modificar un único caso de prueba, sólo ese se ejecuta.
+
+En cuanto lo arreglemos veremos que se pasan los test 2 veces. La primera para el fichero que hemos tocado y la segunda para todo el proyecto, para asegurar que no hemos causado más daños al solucionar el error detectado.
+
+h2. Ejecutando todos los tests
+
+En cualquier momento podemos pulsar @ctrl-c@ para forzar a autotest a ejecutar todos los tests de nuevo.
+
+Para salir de autotest, habrá que usar @ctrl-c@ dos veces.
+
+h2. Añadiendo extras
+
+Hay varios problemas con la configuración estándar de autotest:
+
+* Es fea con ganas
+* Es incómodo tener que consultar la consola continuamente
+* En lo técnico, el polling de los ficheros es costoso
+
+Hay un _set_ de extras que yo uso con autotest en osx para solucionar estas pegas:
+
+* "redgreen":https://github.com/mynyml/redgreen: para añadir color a los resultados de la consola
+* "autotest-growl":https://github.com/svoop/autotest-growl: para que los resultados sean visibles sin esfuerzo. Antes necesitaréis instalar "growl":http://growl.info/ (si no lo tenéis)
+* "autotest-fsevent":https://github.com/svoop/autotest-fsevent: utiliza las notificaciones del sistema en lugar de comprobar cada fichero de forma continua
+
+bc. gem install redgreen autotest-growl autotest-fsevent
+
+Para activar las extensiones, creamos el fichero de configuración @~/.autotest@:
+
+bc.. require 'redgreen/autotest'
+require 'autotest/growl'
+require 'autotest/fsevent'
+
+p. Y, tras reiniciar autotest, este es el resultado
+<img alt="" src="http://blog.abelmuino.com/autotest-colours.png" width="618" height="332" class="mt-image-center" style="text-align: center; display: block; margin: 0 auto 20px;" />
+
+h2. Más trucos
+
+Todo esto, y más, está en "esta referencia de autotest":http://ph7spot.com/musings/getting-started-with-autotest#troubleshooting_autotest_test_detection.
+
+
+
+

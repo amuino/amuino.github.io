@@ -1,0 +1,139 @@
+---
+layout: post
+title: Jugando con RabbitMQ en Mac OSX
+date: '2011-06-28 22:46:44 +0200'
+mt_id: 50
+categories:
+- trucos_y_pistas
+---
+bq. *NOTA:* Actualizado para usar la "nueva versión":http://rdoc.info/github/ruby-amqp/amqp/master/file/docs/GettingStarted.textile del API de AMQP (evitando usar la clase @MQ@). Gracias a "@michaelklishin":http://twitter.com/michaelklishin por el "feedback":http://twitter.com/michaelklishin/status/85817801037713409
+
+
+Tengo el «capricho» de crear una estructura escalable para procesar tweets.
+
+Básicamente hay dos cajas:
+
+* el cliente de twitter: se conecta a la streaming API y su trabajo es leer tweets tan rápido como pueda.
+* el procesador de tweets: hace la lógica _pesada_, quizá ayudado por una base de datos.
+
+Para que el cliente de tweets pueda leer rápido, tengo que desacoplar los dos sistemas. Pero me gustarí­a que el procesador de tweets recibiese trabajo tan rápido como sea posible (en cuanto haya un tweet, nada de tareas periódicas). Vamos, lo que viene siendo un "pub/sub":http://en.wikipedia.org/wiki/Publish/subscribe de toda la vida.
+
+<center><img src="http://www.rabbitmq.com/img/rabbitmq_logo_strap.png"></center>
+
+Y aquí­ es dónde "RabbitMQ":http://www.rabbitmq.com/ (o, más concretamente, el protocolo "AMQP":http://www.amqp.org/confluence/display/AMQP/AMQP+Specification) entra en juego, ya que es capaz de pasar los mensajes del publicador al consumidor al momento y el soporte para clientes Ruby es, según todas las referencias que he visto, "eggscelente":http://www.dogstiltingtheirheads.com/content/franz-0.
+
+A mancharse las manos...
+
+h2. El servidor
+
+Instalamos RabbitMQ usando @port@
+
+bc. sudo port install rabbitmq-server
+
+Dejamos que se cocine un rato y cuando nos devuelva el control:
+
+bc.. sudo rabbitmq-server
+
+Activating RabbitMQ plugins ...
+0 plugins activated:
+
+
++---+   +---+
+|   |   |   |
+|   |   |   |
+|   |   |   |
+|   +---+   +-------+
+|                   |
+| RabbitMQ  +---+   |
+|           |   |   |
+|   v2.5.1  +---+   |
+|                   |
++-------------------+
+AMQP 0-9-1 / 0-9 / 0-8
+...
+broker running
+
+p. *¡Sí­! "Great Success!!":http://www.youtube.com/watch?v=J88-RdWnNT0&feature=related :-)*
+
+h2. El consumidor
+
+Vamos a dejarlo muy muy simple.
+
+Creamos una gema:
+
+bc. bundle gem countwer
+
+Añadimos la dependencia en AMQP a @countwer.gemspec@ para poder comunicarnos con RabbitMQ
+
+bc. s.add_runtime_dependency('amqp', ">= 0.7.1")
+
+Y creamos nuestro cliente en @lib/countwer.rb@. Dejémoslo simple...
+
+bc.. require "countwer/version"
+require "amqp"
+
+AMQP.start(:host => 'localhost') do |connection|
+  AMQP::Channel.new(connection).queue('tweets').subscribe do |h,m|
+    puts "tweet: #{m}"
+  end
+end
+
+p. El código está conectando con el servidor en @localhost@ y nos suscribimos a la cola @tweets@. Cada vez que se enví­e un mensaje a la cola se ejecutará el bloque e imprimiremos el mensaje.
+
+Antes de seguir, no olvidar el @bundle install@
+
+h2. El productor
+
+El productor es nuestro lector de tweets. Es una gema creada con @bundle gem@ que depende de "twitter-stream":https://github.com/voloko/twitter-stream para leer los tweets.
+
+bq. *Ojo!:* No me meto en los detalles de _twitter-stream_, pero el "ejemplo":https://github.com/voloko/twitter-stream es más que suficiente.
+
+La gema se prepara igual que el cliente, pero con este código:
+
+bc.. EventMachine::run {
+  connection = AMQP.connect(:host => "localhost")
+  queue = AMQP::Channel.new(connection).queue("tweets")
+  ...
+  stream.each_item do |item|
+    queue.publish(item)
+  end
+  ...
+}
+
+p. El código es distinto porque _twitter-stream_ ya se ejecuta dentro de "EventMachine":http://rubyeventmachine.com/ (algo que _amqp_ necesita), así­ que no hay que crear el bloque externo como en el cliente.
+
+Sin embargo, el código hace casi lo mismo... conecta con el servidor local, obtiene la referencia a la cola @tweets@ y publica en ella cada uno de los tweets que recibe.
+
+Antes de seguir, no olvidar el @bundle install@
+
+h2. Probando, probando
+
+Tenemos el servidor ya levantado, levantamos un productor.
+
+bc. bundle exec ruby lib/producer.rb
+
+De momento no hay nadie leyendo los mensajes. Puedes ver como se acumulan con:
+
+bc. sudo rabbitmqctl list_queues
+Listing queues ...
+tweets	65
+...done.
+
+Ahora lanzamos un cliente:
+
+bc. bundle exec ruby lib/countwer.rb
+
+Y empezará a _escupir_ los tweets en formato "JSON":http://json.org/
+
+h2. Conclusión
+
+Me ha encantado. No sólo resuelve el problema si no que lo hace de forma muy sencilla (tanto en instalación como en API).
+
+*Bola Extra:* Para no perder el norte... el objetivo era separar el lector de tweets de su procesador porque este hací­a lógica pesada y si estuviesen acoplados el ritmo de lectura bajarí­a.
+
+Es decir... *lo único que hemos conseguido es acumular tweets en la cola de RabbitMQ* porque el consumidor es más lento que el productor.
+
+¿O no?
+
+¡Pues no! _(¡¡ta-chán!!)_ Sin cambiar una lí­nea de código podemos lanzar varios procesadores que recibirán los mensajes de la cola. La única pega es que parece que RabbitMQ reparte la carga mediante "round-robin":http://es.wikipedia.org/wiki/Planificaci%C3%B3n_Round-robin así­ que si el tiempo de procesado no es más o menos homogéneo, me temo que seguiremos teniendo problemas. 
+

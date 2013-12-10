@@ -1,0 +1,17 @@
+---
+layout: post
+title: Si volviese a nacer...
+date: '2010-04-06 21:08:00 +0200'
+mt_id: 23
+categories:
+- opinion
+---
+ !> http://farm3.static.flickr.com/2782/4126413050_d38b4bce4d_m.jpg!
+
+Tras leer a "JMBeas":http://jmbeas.iExpertos.com en "agile-spain":http://groups.google.com/group/agile-spain/msg/527fba6e827223ce?hl=es insistir en la necesidad de un cambio cultural entre _los técnicos_ y enumerar cosas como "TDD":http://www.iexpertos.com/es/blog , "Pair Programming":http://en.wikipedia.org/wiki/Pair_programming y otras _sutilezas técnicas_ me ha venido un pensamiento a la cabeza...
+
+p{border:1px solid #ccc;padding: 1ex;}. Si volviese a nacer... pedirí­a tener las orejas más grandes, para saber escuchar a los clientes. Y un sacacorchos, para sacarles lo que _realmente_ quieren (y tenerlos _enganchados_ para que dediquen el tiempo que ello requiere).
+
+Sé que no tiene mucho que ver con el comentario de Beas, pero es curioso como funciona el cerebro... cualquier cosa puede disparar una chispa. En este caso, es que me cansa que echemos las culpas de todos los males del mundo a la (falta de) habilidades técnicas.
+
+¡Ah! Y que sí­, que tenemos que mejorar técnicamente y no asumir que con un curso de 40 horas de Cobol uno es programador senior...

@@ -1,0 +1,39 @@
+---
+layout: post
+title: Ruby se muere
+date: '2010-02-01 09:01:41 +0100'
+mt_id: 16
+categories:
+- trucos_y_pistas
+---
+<p>Al menos, se muere cuando le pido que trabaje duro para mi...</p>
+<blockquote class="code webkit-indent-blockquote" style="margin: 0 0 0 40px; border: none; padding: 0px;">/Users/amuino/.gem/ruby/1.8/gems/activerecord-2.3.4/lib/active_record/base.rb:1650: [BUG] Segmentation fault<br />ruby 1.8.6 (2008-08-11) [universal-darwin9.0]<br /><br />Abort trap</blockquote>
+
+<p>Lo <em>mejor</em> es que es un error semi-aleatorio: no ocurre siempre en la misma lí­nea ni fichero ni gema... pero ocurre siempre en algún momento de un proceso batch de varias horas.</p>
+
+<p>Es muy posible que no sea culpa de ruby (he probado tanto con la versión instalada por Apple como con Darwin Ports) si &nbsp;no del adaptador de MySQL... no lo sé.</p>
+
+<p>En cualquier caso... yo ya me habí­a olvidado de todos estos bus error y segmentation fault hace muchos años, al usar Java (aunque sí­, también he visto alguna JVM morirse...).</p>
+
+<div style="text-align: center;"><img src="http://www.octalsoftware.com/images/stories/jruby.jpg" /></div><p>Así­ que mi siguiente intento ha sido usar <a href="http://jruby.org">JRuby</a>. Instalo el adaptador activerecord jdbc para mysql, un nuevo entorno y a volar. Sencillo ¿no?</p>
+
+<p>Lamentablemente, tengo una dependencia que utiliza la gema libxml-ruby, que necesita una extensión nativa (¿extensiones nativas? ¿aplicaciones interpretadas no portables? ¿no hemos dado un paso atrás?)... algo que jruby no permite.</p>
+
+<p>Por suerte, el proceso batch no usa libxml y puedo desactivarlo al usar jruby:</p>
+<blockquote class="code webkit-indent-blockquote" style="margin: 0 0 0 40px; border: none; padding: 0px;">config.gem 'libxml-ruby', :lib=&gt;"xml/libxml", :version =&gt; '1.1.3' unless RUBY_PLATFORM =~ /java/</blockquote>
+
+<p>Sólo queda configurar el acceso a mysql mediante jdbc. Es importante instalar la gema desde linea de comandos.</p>
+
+<blockquote class="code webkit-indent-blockquote" style="margin: 0 0 0 40px; border: none; padding: 0px;">jruby -S gem install activerecord-jdbcmysql-adapter</blockquote>
+
+<p>Algo que me ha confundido durante horas han sido los errores del tipo:</p>
+
+<blockquote class="code webkit-indent-blockquote" style="margin: 0 0 0 40px; border: none; padding: 0px;">Missing these required gems:
+  &nbsp;&nbsp;activerecord-jdbcmysql-adapter &nbsp;= 0.9.2</blockquote>
+<p>... que son causados por declarar la dependencia en environment.rb. No lo hagas :-)</p>
+
+<p>Y el toque final es añadir la compatibilidad del adaptador jdbc con la configuración mysql "de toda la vida" para no tener que tocar el database.yml ni crear un nuevo environment.</p>
+
+<blockquote class="code webkit-indent-blockquote" style="margin: 0 0 0 40px; border: none; padding: 0px;">jruby script/generate jdbc</blockquote>
+<p>(Esto sólo activa el adaptador jdbc cuando se ejecuta sobre jruby).</p>
+<p>Han sido unas cuantas horas de experimentos, búsquedas en google y frustración... ¡que espero que le ahorren tiempo a alguien!</p>

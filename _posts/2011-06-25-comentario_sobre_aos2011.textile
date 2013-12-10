@@ -1,0 +1,27 @@
+---
+layout: post
+title: 'Comentario sobre #AOS2011'
+date: '2011-06-25 13:43:17 +0200'
+mt_id: 49
+categories:
+- opinion
+---
+Esto no es un post. Es una copia de mi respuesta a la "opinión de Jesús sobre el AOS2011":http://blog.jjballano.com/2011/06/24/vision-del-aos2011-optimistas-%c2%bfabstenerse/#comment-217 (muy valiosa, leedla) Mi comentario es tan largo, tan "off-topic" y tan personal que he decidido publicarlo aquí­.
+
+<hr >
+
+Comparto en cierta medida la sensación de "podrí­a haber sido mejor" (es curioso cómo con sólo cambiar las palabras la misma idea se vuelve positiva... nos viene bien la crí­tica, pero enfocada a hacer algo).
+
+Por dos motivos:
+
+En primer lugar, **mi percepción de "endogamia"**. Aunque cerca del 50% de la gente era nueva en un AOS, yo no supe mezclarme con ellos o ellos no supieron hacerse visibles y participativos (¿es posible que a la gente nueva le interese lo mismo que a los que hemos visto ya un par de AOS?). Los comentarios en las sesiones los hací­amos "los de siempre" y lo mismo pasó con las propuestas (como en todo, salvo honrosas excepciones). Es curioso cómo las personas de las comunidades locales sí­ se hicieron notar (Galicia, Canarias, CyL, Zona Norte...).
+
+<a href="http://www.flickr.com/photos/amuino/5850076175/" title="Apertura Agile Open Spain 2011 - 30 by a_muinho, on Flickr"><img src="http://farm6.static.flickr.com/5224/5850076175_744363097e_z.jpg" width="427" height="640" alt="Apertura Agile Open Spain 2011 - 30"></a>
+
+En segundo, **el enfoque "infinito"** del evento. Mis dos charlas eran puramente técnicas y absolutamente no-ágiles (dudé mucho, pero bastante gente me animó) y sin embargo se hicieron un hueco.
+
+Pero aun así­, lo disfruté mucho. Quizá porque mis expectativas eran otras. Lo que me atrae de la comunidad ágil es la "densidad" de gente preocupada por su oficio comparado con otros entornos. Gente con ideas. Gente con propuestas. Es la gente con la que me gusta estar (incluso si sus ideas no son las mí­as) y si esa gente hiciese cualquier cosa no ágil para mi no habrí­a diferencia.
+
+Para rematar… Yo creo que el cambio se hace creando empresas (o departamentos) que "hagan las cosas bien". Y quizá, después, se consiga cambiar a las empresas que ya existen. Es más fácil hacer una casa nueva dónde se necesita que mover una que ya existe.
+
+Vaya ladrillazo de comentario…

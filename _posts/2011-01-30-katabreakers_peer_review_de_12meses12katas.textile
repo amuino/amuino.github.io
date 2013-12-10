@@ -1,0 +1,102 @@
+---
+layout: post
+title: '#katabreakers: Peer review de 12meses12katas'
+date: '2011-01-30 17:30:15 +0100'
+mt_id: 42
+categories:
+- proyectos
+---
+ "12meses12katas":http://www.12meses12katas.com/ es una idea muy interesante para poner a disposición de todo el mundo (para escarnio o inspiración) soluciones a problemas muy acotados.
+
+Partiendo de que repetir una y otra vez este tipo de problemas no tiene el mismo valor que "resolver problemas reales":http://blog.abelmuino.com/2010/09/aprende-a-costa-del-cliente.html (no acotados), sí­ que tiene sus usos.
+
+<center><<a href="http://www.flickr.com/photos/st3f4n/4193370268/" title="I will find thedroids I'm looking for I will find the droids I'm looking for I will find the droids I'm looking for by Stéfan, on Flickr"><img src="http://farm3.static.flickr.com/2757/4193370268_3539ffb398.jpg" width="500" height="333" alt="I will find the droids I'm looking for I will find the droids I'm looking for I will find the droids I'm looking for" /></a></center>
+
+Uno de esos usos es *colaborar en mejorar las katas* (mediante _peer review_).
+
+h2. ¿Qué?
+
+*La idea es simple:* Estudiar la kata de otra persona.
+
+Si encuentras defectos, crea y comparte con el autor los casos de prueba necesarios para demostrarlo (quizá con algún refactoring para hacer el código más _testable_). De esta forma el autor puede corregirlos y tú volver a revisarlos, iniciando una especie de _diálogo_.
+
+h2. Elegir de quién vamos a aprender
+
+Lo primero es *elegir una implementación* de las que han sido publicadas en el "github de 12meses12katas":https://github.com/12meses12katas/
+
+Después tendremos que localizar el fork del autor. Con un poco de suerte, su usuario en github será el mismo del directorio y el proyecto se llamará igual que en 12meses12katas.
+
+En mi caso, mi carpeta es "amuino":https://github.com/12meses12katas/Enero-String-Calculator/tree/master/amuino, por lo que mi url será:
+
+bc. https://github.com/amuino/Enero-String-Calculator.git
+
+Si esto no funciona para localizar el fork, habrá que mirar "la red del proyecto":https://github.com/12meses12katas/Enero-String-Calculator/network.
+
+h2.  Preparar nuestra copia
+
+Queremos enviar nuestros casos de prueba al autor de la kata, así­ que tendremos que configurar nuestro clon del repositorio para apuntar al clon del autor de la kata (de forma que trabajemos todos con el mismo código).
+
+Mi opción para ello es crear una rama que siga al repositorio del autor:
+
+bc.. git remote add -f -m master amuino https://github.com/amuino/Enero-String-Calculator.git
+git checkout -b amuino amuino/master
+
+p. Ya está, nuestro repositorio local tienes una rama @amuino@ que sigue a mi repositorio. Además, estás usando esa rama.
+
+(cambia @amuino@ por el nombre del usuario que corresponda)
+
+bc.. Enero-String-Calculator $ git branch
+* amuino
+  master
+
+p. Cuando necesitemos volver a seguir nuestro repositorio, simplemente cambiamos a la rama master: @git checkout master@
+
+h2. Escribir los casos de prueba
+
+Nada especial aquí­... excepto, tal vez, que deberemos aprender lo básico del lenguaje en el que se haya hecho la kata para poder escribirlo y ejecutarlo (si es uno en el que no tengamos soltura).
+
+h2. Commit & Push
+
+Tampoco hay nada especial en el commit.
+
+bc.. git add .
+git commit -m "Test para XYZ"
+
+p. En el push, hay que recordar indicarle a git que debe crear una rama remota:
+
+bc. git push origin amuino
+
+Desde este momento podremos ver la rama en nuestro proyecto de github.
+
+h2. Pull request
+
+Todos los pasos se hacen en la web *tu fork* en github
+
+Primero, cambia a la nueva rama (en mi caso, yo he usado la kata de Jorge Uriarte).
+
+<img alt="Cambio de rama en github" src="http://blog.abelmuino.com/github-switch-branches.png" width="197" height="130" class="mt-image-center" style="text-align: center; display: block; margin: 0 auto 20px;" />
+
+A continuación, iniciamos una _pull-request_. Por defecto, estará preparada para enviarla al repositorio de @12meses12katas:master@. Haciendo click podemos cambiarlo seleccionando cualquiera de los forks. Hay que localizar el que nos interesa (si es el mí­o: @amuino/Enero-String-Calculator@).
+
+Para confirmar el cambio, pulsamos el botón *Update Commit Range*.
+
+Y ahora continuamos con el proceso normal de escribir un tí­tulo y una descripción para la _pull-request_.
+
+h2. ¡Listo!
+
+El autor recibirá su notificación y podrá ponerse en contacto con vosotros si lo necesita para discutir el problema o aceptar el pull y mejorar su kata (o pasar de todo, que siempre es una opción).
+
+h2. ¿Te mola la idea?
+
+¡Pues no necesitas pedir permiso!
+
+Puedes usar twitter para solicitar _reviews_ o discutir la idea usando el tag "#katabreakers":http://twitter.com/#!/search/%23katabreakers
+
+h2. Otras opciones
+
+Hay más formas de hacer lo mismo. Puedes usar parches y adjuntarlos a una _issue_ en github, puedes hacer _code reviews_ sobre los commits...
+
+Si te gustan más, úsalas. Lo interesante es que aprendas del trabajo de otro y le ayudes a eso otro a aprender del tuyo.
+
+*Happy breaking!*
+ 

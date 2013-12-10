@@ -1,0 +1,33 @@
+---
+layout: post
+title: La importancia de los mensajes en los tests
+date: '2010-08-30 10:08:52 +0200'
+mt_id: 32
+categories:
+- trucos_y_pistas
+---
+"JUnit":http://junit.org y la mayorí­a de los frameworks de testing suelen ser bastante buenos generando mensajes explicativos cuando falla un _assert_. Esto me ha creado la mala costumbre de no proporcionar mis propios mensajes de error.
+
+<a href="http://www.flickr.com/photos/love_as_inspiration/3867768805/" title="Love message by Tinchika, on Flickr"><img src="http://farm3.static.flickr.com/2454/3867768805_9d0b54ea69.jpg" width="500" height="375" alt="Love message" /></a>
+
+El problema aparece con los métodos del tipo @assertNull@ / @assertNotNull@ / @assertTrue@ / @asserFalse@, dónde lo único que se ve en el mensaje de error es la (muy fea) traza:
+
+bc. java.lang.AssertionError: 
+	at org.junit.Assert.fail(Assert.java:74)
+	at org.junit.Assert.assertTrue(Assert.java:37)
+	at org.junit.Assert.assertNotNull(Assert.java:356)
+	at org.junit.Assert.assertNotNull(Assert.java:365)
+	at un.paquete.UnaClaseTest.testLoQueSea(UnaClaseTest.java:232)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:616)
+	at org.junit.internal.runners.TestMethod.invoke(TestMethod.java:59)
+	...
+	... blah blah blah
+
+Dentro del IDE tiene un pase, porque estamos a un click del problema. Lo _feo_ es cuando esto pasa en integración continua y necesitamos abrir el código simplemente para saber cuál es el problema y poder decidir lo importante que es resolverlo.
+
+Así­ que... chicos y chicas, @assertNotNull("El karma no debe ser nulo", user.getKarma())@
+
+Hasta aquí­ mi consejo de hoy.

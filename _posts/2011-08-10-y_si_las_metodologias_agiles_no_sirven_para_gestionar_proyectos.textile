@@ -1,0 +1,17 @@
+---
+layout: post
+title: ¿Y si las metodologí­as ágiles no sirven para gestionar proyectos?
+date: '2011-08-10 16:05:32 +0200'
+mt_id: 51
+categories:
+- opinion
+---
+A veces me vienen chispas de inspiración no meditadas. Igual que vienen, se van... pero esta la voy a escribir.
+
+De repente he pensado en Scrum, Kanban y sus hijos bastardos (o hí­bridos) y me ha dado la sensación de que no tienen nada que ver con la gestión de los proyectos (requisitos, plazos, entregas, niveles de calidad, predictibilidad...).
+
+Las reglas, o al menos las reglas *principales* tratan sobre la gestión de las personas. Cómo dejarlas trabajar. Cómo hacerlas reflexionar...
+
+Pero en cuanto a metodologí­a de gestión de proyectos... bueno, no es muy diferente de "a salto de mata". Cada cual hace lo que puede y luego (con suerte) reflexiona sobre ello.
+
+El resultado es conocido... cada cual dice hacer scrum (o lean, o lo que sea) a su manera. Pero... ¿cuál es la diferencia entre usar una metodologí­a (cualquiera) "a mi manera" e improvisar?

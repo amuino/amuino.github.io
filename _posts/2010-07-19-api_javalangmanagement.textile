@@ -1,0 +1,24 @@
+---
+layout: post
+title: API java.lang.management
+date: '2010-07-19 19:55:27 +0200'
+mt_id: 26
+categories:
+- trucos_y_pistas
+---
+El API "java.lang.management":http://www.doc.ic.ac.uk/csg-old/java/1.5.0docs/api/java/lang/management/package-summary.html permite, desde java 1.5 (y estamos ya camino de la versión 7) explorar varios parámetros de la máquina virtual en la que se ejecuta un programa java.
+
+<a href="http://www.flickr.com/photos/chavals/3045853162/" title="Coffee and Milk by Chaval Brasil, on Flickr"><img src="http://farm4.static.flickr.com/3209/3045853162_f6af47aa7e.jpg" width="500" height="351" alt="Coffee and Milk" /></a>
+
+No es una api muy extensa... partiendo de la clase "ManagementFactory":http://www.doc.ic.ac.uk/csg-old/java/1.5.0docs/api/java/lang/management/ManagementFactory.html podemos obtener las instancias capaces de darnos los datos que nos interesan.
+
+En mi caso, necesitaba comprobar que al lanzar una herramienta, los parámetros pasados a la máquina virtual eran los correctos (varios valores para los tí­picos @-Xmx@ y similares). Esto se consigue muy fácilmente con:
+
+bc. ManagementFactory.getRuntimeMXBean().getInputArguments();
+
+Durante mis breves experimentaciones he llegado a dos conclusiones:
+
+# El parámetro @-server@ no es muy fiable. En Snow Leopard aparece como @-Xserver@, pero en ubuntu no aparece...
+# La memoria máxima no coincide con el valor esperado de @-Xmx@ (aunque está cerca). Esto es verdad para @Runtime.getRuntime().maxMemory()@ y para su análogo en la ''management api'' @ManagementFactory.getMemoryMXBean().getHeapMemoryUsage().getMax()@
+
+...y esto es lo que he descubierto hoy. ¿Qué APIs/librerí­as has descubierto tú que te han sacado de un apuro?

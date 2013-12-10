@@ -1,0 +1,30 @@
+---
+layout: post
+title: Instalando Rails 3 con Ruby 1.8.7 y rvm
+date: '2010-09-06 10:52:23 +0200'
+mt_id: 35
+categories:
+- trucos_y_pistas
+---
+Si intentas instalar el nueví­simo "rails 3.0.0":http://weblog.rubyonrails.org/2010/8/29/rails-3-0-it-s-done con una versión de ruby 1.8.7 (comprobado hasta _302_) instalada por "rvm":rvm.beginrescueend.com/, la instalación "fallará al generar la documentación":http://gist.github.com/565967
+
+bc. Installing ri documentation for rails-3.0.0...
+File not found: lib
+
+<center><a href="http://www.flickr.com/photos/abe_estrada/2939697106/" title="Ruby On Fails by Abe Estrada, on Flickr"><img src="http://farm4.static.flickr.com/3202/2939697106_6474dec014_m.jpg" width="189" height="240" alt="Ruby On Fails" /></a></center>
+
+*La causa* es que la gema de _rails_ especifica que tiene código en la carpeta @lib@... pero no existe esa carpeta. 
+
+bc. s.require_paths = ["lib"]
+
+"El código en git":http://github.com/rails/rails/blob/6d796a71d2e4ad0baec12b89da0b4b3470eebab1/rails.gemspec no especifica esa carpeta, así­ que sólo me queda suponer que aparece porque es el valor por defecto y se añade durante la publicación.
+
+*La solución*, dado que _rails_ instala perfectamente con ruby 1.9.2, consiste en actualizar algo... en este caso, "rdoc":http://rdoc.rubyforge.org/
+
+bc. gem install rdoc
+
+La nueva versión es más tolerante con directorios inexistentes y permite la instalación.
+
+Otra opción es crear una carpeta @lib@ vací­a dentro de la gema _rails_, pero tendréis muchas posibilidades de que reaparezca el error con alguna otra gema.
+
+Y ahora... a volar. A ver que hay de nuevo en 3.0.0...

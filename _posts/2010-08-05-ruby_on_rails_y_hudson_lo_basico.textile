@@ -1,0 +1,29 @@
+---
+layout: post
+title: 'Ruby on Rails y Hudson: Lo básico'
+date: '2010-08-05 09:51:34 +0200'
+mt_id: 28
+categories:
+- trucos_y_pistas
+---
+Cada vez estoy más metido en el mundo del desarrollo con "ruby on rails":http://rubyonrails.org y hasta empiezo a disfrutarlo (¡en contra de mi intuición inicial!). Y cualquier cosa con la que haga proyectos necesita estar bajo un sistema de integración continua... yo uso "hudson":http://hudson-ci.org.
+
+Para los no iniciados, un sistema de integración continua (como hudson) no es más que una forma de ejecutar tareas sobre el código, normalmente sobre la versión más reciente en el sistema de control de versiones. Tareas tí­picas son compilar, pasar pruebas, empaquetar o desplegar la aplicación en un entorno de QA (o incluso producción).
+
+Por otra parte, ruby on rails no necesita compilación, así­ que lo único que necesitamos es saber que no hemos roto nada... es decir, que las pruebas pasan.
+
+!-/hudson/nuevo-proyecto-estilo-libre.png!
+
+Fácil, creamos un nuevo proyecto *de estilo libre* y rellenamos los campos habituales para el "SCM":http://es.wikipedia.org/wiki/Software_Configuration_Management (dónde está el código fuente) y los disparadores (cuando se ejecuta la build). Yo suelo elegir el polling frecuente del SCM, para que se ejecuten las builds después del commit.
+
+!-/hudson/disparador-scm.png!
+
+Y la parte interesante:
+
+Añadir un nuevo paso de ejecución de tipo *linea de comandos* con el mismo contenido que usamos en nuestra máquina. Por ejemplo:
+
+!-/hudson/rake-tests.png!
+
+Recuerda que el _checkout_ del proyecto crea un directorio, de ahí­ que sea necesario el @cd trunk@ ... habrá que ajustarlo si usas otro nombre.
+
+Hasta aquí­ sólo hemos conseguido que hudson se queje cuando hacemos un _commit_ de algo que rompe las pruebas. Es un comienzo, pero estarí­a bien tener algo más de información, alguna gráfica... Eso, en el próximo capí­tulo.

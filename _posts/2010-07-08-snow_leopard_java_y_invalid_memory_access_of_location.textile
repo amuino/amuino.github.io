@@ -1,0 +1,21 @@
+---
+layout: post
+title: Snow Leopard, Java y Invalid memory access of location
+date: '2010-07-08 12:00:54 +0200'
+mt_id: 24
+categories:
+- trucos_y_pistas
+---
+Estoy de reenganche con mis proyectos tras "venirme de vacaciones":http://nzencoche.wordpress.com (la primera vez que descanso un mes entero, se hace duro). Además, me he actualizado la versión de OSX a "Snow Leopard":http://www.apple.com/es/macosx/ ...
+
+Oh, sorpresa, las pruebas de uno de los proyectos fallan con un mí­stico @Invalid memory access for location@.
+
+Mi conclusión, después de "buscar mucho en google":http://bit.ly/9UvyiY, es que se trata de algún tipo de bug en la gestión de memoria que ocurre al combinar la nueva versión de Java en Snow Leopard con las clases compiladas por el compilador de "JDT":http://www.eclipse.org/jdt/core/index.php (yo uso Eclipse 3.5 todaví­a... quizá con el nuevo "Eclipse 3.6":http://eclipse.org/helios/ esto no pase...).
+
+Yo lo he solucionado haciendo que @-Xms@ y @-Xmx@ coincidan y poniendo suficiente @PermGenSpace@ (aunque eso es otra guerra), tanto para Eclipse como para el lanzador de Junit.
+
+!/junit-vm-args.png!
+
+Lo "bueno" de todo esto es que desde lí­nea de comandos todo funciona (ya que no se usa el compilador de JDT).
+
+Otras solución que he leí­do (pero no probado) es ejecutar java en modo interpretado (bastante más lento).

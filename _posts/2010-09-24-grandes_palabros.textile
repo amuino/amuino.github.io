@@ -1,0 +1,19 @@
+---
+layout: post
+title: Grandes palabros
+date: '2010-09-24 12:37:12 +0200'
+mt_id: 36
+categories:
+- personal
+---
+Desde que estoy con los ágilistas de "agile-spain":http://groups.google.es/group/agile-spain estoy aprendiendo grandes palabros. Algunos de ellos no son exclusivos del agilismo o la informática.
+
+Aquí­ van mis favoritos... los que he usado alguna vez.
+
+* *ASM*: ( _metodologí­a ASM_, _forma de trabajo ASM_). Dí­cese de la forma de trabajar que no tiene forma. Literalmente _a salto de mata_.
+* *poyake*:  ( _hacer un poyake_, _trabajar en un poyake_)
+## Atención por el detalle, pulido, mejora relacionada con la tarea que se estaba realizando: _Poyake lavamos el coche, aprovecho y le miro la presión de neumáticos_
+## Pérdida de tiempo, distracción de la tarea principal: _Poyake venimos al super a por fruta, voy a comprar vozka_
+* *yapero*: Excusa barata para no hacer algo que se sabe es necesario y mejor que no hacerlo. _Deberí­as hacer deporte. Yapero no tengo tiempo_
+
+¿Quien sabe más palabros que deba conocer?

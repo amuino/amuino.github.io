@@ -1,0 +1,38 @@
+---
+layout: post
+title: ActiveRecord, RSpec y mocks de relaciones
+date: '2011-03-24 11:33:17 +0100'
+mt_id: 47
+categories:
+- trucos_y_pistas
+---
+Esta es una de esas entradas para recordarme la solución a cosas que me han dado problemas.
+
+En este caso es relativo al comportamiento que tiene ActiveRecord al asignar valores a las relaciones.
+
+bc. post = Post.new(:comments => [ Comment.new, Comment.new])
+post.count # => 0
+post.size # => 2
+
+p. Parece razonable. Como todaví­a no se ha guardado el @post@ ni sus @comments@ el @count@ devuelve cero (lo que devolverí­a la base de datos). Sin embargo @size@devuelve la longitud correcta del array.
+
+Sin embargo, esto es muy molesto durante las pruebas, dónde intentamos evitar los accesos a la base de datos.
+
+bc. let(:post) { mock_model(Post) }
+before(:each) do
+  post.comments = [mock_model(Comment), mock_model(Comment)]
+end
+
+p. Si el código que probamos usa @size@, el test es el que queremos. Si usa @count@, entonces no. Y serí­a muy malo hacer que el test dependiese de la implementación elegida.
+
+La *solución* (o una de ellas) es _mockear_ la asociación para evitar la lógica de @active record@:
+
+bc. let(:post) { mock_model(Post) }
+before(:each) do
+  post.stub(:comments).
+       and_return [mock_model(Comment), mock_model(Comment)]
+end
+
+Porque, sí­... los arrays devuelven el mismo valor para @count@ que para @size@ (y, ya puestos, para @length@).
+
+¿Qué te parece? ¿Hay una solución mejor?
